@@ -1,7 +1,5 @@
 package com.pukka.controller;
 
-import com.pukka.model.Business;
-import com.pukka.model.Source;
 import com.pukka.service.UserService;
 import org.junit.Before;
 import org.junit.Test;
