@@ -12,7 +12,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
-import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LoginControllerTest {
@@ -47,8 +46,26 @@ public class LoginControllerTest {
 	}
 
 	@Test
+	public void login_shouldReturnError_whenLoginSourceIsBlank() {
+		String result = loginController.login("invalid,,jess1234");
+		assertThat(result, equalTo("error"));
+	}
+
+	@Test
 	public void login_shouldReturnError_whenBusinessIsInvalid() {
 		String result = loginController.login("facebook,invalid,jess1234");
+		assertThat(result, equalTo("error"));
+	}
+
+	@Test
+	public void login_shouldReturnError_whenBusinessIsBlank() {
+		String result = loginController.login("facebook, ,jess1234");
+		assertThat(result, equalTo("error"));
+	}
+
+	@Test
+	public void login_shouldReturnError_whenLoginNameIsEmpty() {
+		String result = loginController.login("facebook,initech, ");
 		assertThat(result, equalTo("error"));
 	}
 }

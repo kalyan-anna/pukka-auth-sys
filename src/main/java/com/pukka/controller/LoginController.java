@@ -3,6 +3,7 @@ package com.pukka.controller;
 import com.pukka.model.Business;
 import com.pukka.model.Source;
 import com.pukka.service.UserService;
+import static org.apache.commons.lang3.StringUtils.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,10 @@ public class LoginController {
 
 		Optional<Business> business = Business.fromString(args[1]);
 		if(!business.isPresent()) {
+			return ERROR;
+		}
+
+		if(isBlank(args[2])) {
 			return ERROR;
 		}
 

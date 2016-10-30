@@ -35,7 +35,7 @@ public class UserServiceTest {
 		String loginName = "jeo123";
 		String userId = "00009";
 		User user = new User(userId, source, business, loginName);
-		when(userRepository.findBySourceAndLoginName(source, loginName)).thenReturn(Optional.of(user));
+		when(userRepository.findBySourceBusinessAndLoginName(source, business, loginName)).thenReturn(Optional.of(user));
 
 		String result = userService.getUserId(source, business, loginName);
 		assertThat(result, equalTo(userId));
@@ -47,7 +47,7 @@ public class UserServiceTest {
 		Business business = Business.INITECH;
 		String loginName = "jeo123";
 		String expectedUserId = "00009";
-		when(userRepository.findBySourceAndLoginName(source, loginName)).thenReturn(Optional.empty());
+		when(userRepository.findBySourceBusinessAndLoginName(source, business,loginName)).thenReturn(Optional.empty());
 		when(userIdGenerator.nextUserId()).thenReturn(expectedUserId);
 
 		String result = userService.getUserId(source, business, loginName);
