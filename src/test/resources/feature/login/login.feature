@@ -1,7 +1,7 @@
 Feature: User login
 
   Scenario Outline: valid business and login source
-    Given a user with login name <login_name>, logging in business <business> and login source as <login_source>
+    Given a user with login name "<login_name>", business "<business>" and login source as "<login_source>"
     When logging in
     Then should return a user id
 
@@ -15,7 +15,7 @@ Feature: User login
       | joe6       | initrode  | google       |
 
   Scenario Outline: Invalid business or login source
-    Given a user with login name <login_name>, logging in business <business> and login source as <login_source>
+    Given a user with login name "<login_name>", business "<business>" and login source as "<login_source>"
     When logging in
     Then should return error
 
