@@ -9,6 +9,6 @@ public class UserAssertions {
 
 	public static void assertIsValidUserId(String userId) {
 		assertThat(userId, not(isEmptyOrNullString()));
-		assertThat(userId, equalTo("error"));
+		assertThat(userId, not(equalTo("error")));
 	}
 }

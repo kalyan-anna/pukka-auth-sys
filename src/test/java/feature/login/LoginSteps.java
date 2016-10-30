@@ -1,6 +1,7 @@
 package feature.login;
 
 import com.pukka.PukkaTestApplication;
+import static com.pukka.UserAssertions.*;
 import com.pukka.controller.LoginController;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -39,15 +40,13 @@ public class LoginSteps {
 
 	@Then("^should return a user id$")
 	public void should_return_a_user_id() {
-		assertThat(result, not(isEmptyOrNullString()));
-		assertThat(result, not(equalTo("error")));
+		assertIsValidUserId(result);
 	}
 
 	@Then("^should return error$")
 	public void should_return_error() {
 		assertThat(result, not(isEmptyOrNullString()));
 		assertThat(result, equalTo("error"));
-
 	}
 
 	@Test
