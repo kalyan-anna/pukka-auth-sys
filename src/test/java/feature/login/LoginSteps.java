@@ -5,6 +5,7 @@ import com.pukka.controller.LoginController;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootContextLoader;
@@ -49,4 +50,8 @@ public class LoginSteps {
 
 	}
 
+	@Test
+	public void dummyTestForGradle() {
+		//TODO: Gradle is expecting a dummy test method. Need to find a fix
+	}
 }

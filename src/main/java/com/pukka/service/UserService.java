@@ -4,7 +4,6 @@ import com.pukka.model.Business;
 import com.pukka.model.Source;
 import com.pukka.model.User;
 import com.pukka.repository.UserRepository;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +19,7 @@ public class UserService {
 	private UserIdGenerator userIdGenerator;
 
 	public String getUserId(Source source, Business business, String loginName) {
-		Optional<User> user = userRepository.findBySourceAndLoginName(source, loginName);
+		Optional<User> user = userRepository.findBySourceBusinessAndLoginName(source, business, loginName);
 		if(user.isPresent()) {
 			return user.get().getUserId();
 		}

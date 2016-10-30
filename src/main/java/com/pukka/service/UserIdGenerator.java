@@ -7,6 +7,6 @@ import org.springframework.stereotype.Service;
 public class UserIdGenerator {
 
 	public String nextUserId() {
-		return RandomStringUtils.randomAscii(10);
+		return RandomStringUtils.randomAlphanumeric(10);
 	}
 }

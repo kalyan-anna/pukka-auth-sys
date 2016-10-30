@@ -34,8 +34,15 @@ public class PukkaApplication implements CommandLineRunner {
 			}
 		}
 
-		System.out.println("lines:" + lines);
-		loginController.login(lines.get(0));
+		for(String input : lines) {
+			String userId = loginController.login(input);
+			if(userId.equals("error")) {
+				System.out.println("error");
+			} else {
+				System.out.println(input + "," + userId);
+
+			}
+		}
 	}
 
 	public static void main(String args[]) throws Exception {
