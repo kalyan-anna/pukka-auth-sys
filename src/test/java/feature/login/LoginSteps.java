@@ -1,13 +1,27 @@
 package feature.login;
 
-import cucumber.api.PendingException;
+import com.pukka.PukkaTestApplication;
+import com.pukka.controller.LoginController;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootContextLoader;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
 
+@ContextConfiguration(classes = PukkaTestApplication.class, loader = SpringBootContextLoader.class)
+@RunWith(SpringJUnit4ClassRunner.class)
+@ActiveProfiles("test")
 public class LoginSteps {
+
+	@Autowired
+	private LoginController loginController;
 
 	private String loginName;
 	private String businessName;
@@ -23,7 +37,7 @@ public class LoginSteps {
 
 	@When("^logging in$")
 	public void logging_in() {
-		throw new PendingException();
+		result = loginController.login("dummy");
 	}
 
 	@Then("^should return a user id$")

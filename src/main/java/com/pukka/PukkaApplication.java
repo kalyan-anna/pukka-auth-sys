@@ -1,10 +1,11 @@
-package com.pukka.main;
+package com.pukka;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.pukka.controller.LoginController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Profile;
 
 import static org.apache.commons.lang3.StringUtils.*;
 
@@ -14,13 +15,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
-public class LoginSystemMain implements CommandLineRunner {
+@Profile("!test")
+public class PukkaApplication implements CommandLineRunner {
 
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	@Autowired
+	private LoginController loginController;
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("Application loaded. Enter your input...");
+		System.out.println("Application loaded. Please enter your input...");
 
 		List<String> lines = new ArrayList<>();
 		try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
@@ -32,10 +35,11 @@ public class LoginSystemMain implements CommandLineRunner {
 		}
 
 		System.out.println("lines:" + lines);
+		loginController.login(lines.get(0));
 	}
 
 	public static void main(String args[]) throws Exception {
-		SpringApplication.run(LoginSystemMain.class, args);
+		SpringApplication.run(PukkaApplication.class, args);
 	}
 
 }
