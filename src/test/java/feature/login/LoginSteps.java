@@ -23,21 +23,17 @@ public class LoginSteps {
 	@Autowired
 	private LoginController loginController;
 
-	private String loginName;
-	private String businessName;
-	private String loginSource;
 	private String result;
+	private String input;
 
 	@Given("^a user with login name \"([^\"]*)\", business \"([^\"]*)\" and login source as \"([^\"]*)\"$")
 	public void givenUserDetails(String loginName, String businessName, String loginSource) {
-		this.loginName = loginName;
-		this.businessName = businessName;
-		this.loginSource = loginSource;
+		this.input = loginSource + "," + businessName + "," + loginName;
 	}
 
 	@When("^logging in$")
 	public void logging_in() {
-		result = loginController.login("dummy");
+		result = loginController.login(input);
 	}
 
 	@Then("^should return a user id$")
