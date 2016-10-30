@@ -1,12 +1,26 @@
 package com.pukka.controller;
 
+import com.pukka.model.Business;
+import com.pukka.model.Source;
+import com.pukka.service.UserService;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
+import static org.mockito.Mockito.*;
+
+@RunWith(MockitoJUnitRunner.class)
 public class LoginControllerTest {
 
+	@Mock
+	private UserService userService;
+
+	@InjectMocks
 	private LoginController loginController;
 
 	@Before
