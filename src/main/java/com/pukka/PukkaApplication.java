@@ -35,8 +35,13 @@ public class PukkaApplication implements CommandLineRunner {
 			}
 		}
 
-		inputs.stream().map(loginController::login)
-				.forEach(System.out::println);
+		inputs.stream().map(input -> {
+			String result = loginController.login(input);
+			if(!result.equals("error")) {
+				result = input + "," + result;
+			}
+			return result;
+		}).forEach(System.out::println);
 	}
 
 	public static void main(String args[]) throws Exception {

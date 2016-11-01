@@ -43,6 +43,6 @@ public class LoginController {
 
 		//Assume login to facebook, google or local is successful
 
-		return input + "," + userService.getUserId(source.get(), business.get(), args[2]);
+		return userService.getUserId(source.get(), business.get(), args[2]);
 	}
 }
