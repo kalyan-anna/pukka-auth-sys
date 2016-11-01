@@ -27,12 +27,12 @@ public class LoginController {
 		if(args.length != 3) {
 			return ERROR;
 		}
-		Optional<Source> source = Source.fromString(args[0]);
+		Optional<Source> source = Source.fromString(args[0].trim());
 		if(!source.isPresent()) {
 			return ERROR;
 		}
 
-		Optional<Business> business = Business.fromString(args[1]);
+		Optional<Business> business = Business.fromString(args[1].trim());
 		if(!business.isPresent()) {
 			return ERROR;
 		}
@@ -43,6 +43,6 @@ public class LoginController {
 
 		//Assume login to facebook, google or local is successful
 
-		return userService.getUserId(source.get(), business.get(), args[2]);
+		return input + "," + userService.getUserId(source.get(), business.get(), args[2]);
 	}
 }

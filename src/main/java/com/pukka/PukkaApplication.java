@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 @SpringBootApplication
 @Profile("!test")
@@ -25,24 +26,17 @@ public class PukkaApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		System.out.println("Application loaded. Please enter your input...");
 
-		List<String> lines = new ArrayList<>();
+		List<String> inputs = new ArrayList<>();
 		try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
 			String line = reader.readLine();
 			while(isNotBlank(line)) {
-				lines.add(line);
+				inputs.add(line);
 				line = reader.readLine();
 			}
 		}
 
-		for(String input : lines) {
-			String userId = loginController.login(input);
-			if(userId.equals("error")) {
-				System.out.println("error");
-			} else {
-				System.out.println(input + "," + userId);
-
-			}
-		}
+		inputs.stream().map(loginController::login)
+				.forEach(System.out::println);
 	}
 
 	public static void main(String args[]) throws Exception {
